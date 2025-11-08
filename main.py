@@ -2,6 +2,12 @@
 import svgwrite
 
 from sailocus.geometry import point
+from sailocus.svg import svg
+
+# import sys
+# from pathlib import Path
+# ys.path.append(str(Path(__file__).parent))  # Add project root
+
 
 def recalculate(points):
     margin = 10
@@ -28,9 +34,6 @@ def recalculate(points):
     return canvas_size, margin, updated_points
 
 def create_four_sided_sail(points, fileName):
-
-    #margin = 20
-    #canvas_size = (6k00, 600)
 
     canvas_size, margin, points = recalculate(points)
     width, height = canvas_size
@@ -60,3 +63,5 @@ clew = point.Point(397, 29)
 four_sided_sail_points = [ peak, throat, tack, clew]
 
 create_four_sided_sail(four_sided_sail_points, "simplesail.svg")
+
+svg.SVG(point.Point(1,2))

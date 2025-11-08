@@ -27,9 +27,9 @@ class Point(tuple):
     def __new__(cls, a, b):
         return super().__new__(cls, (a, b))
         
-    def __init__(self, a, b):
-        # No need to assign; __new__ already set the values
-        pass
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     # Optional: prevent accidental creation with wrong number of args
     @classmethod

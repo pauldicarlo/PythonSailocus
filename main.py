@@ -73,4 +73,10 @@ xsail.validateSail()
 
 create_four_sided_sail(four_sided_sail_points, "simplesail.svg")
 
-svg.SVG(point.Point(1,2))
+xsvg = svg.SVG()
+
+pathToFile = "./simpleSail.svg"
+margin = point.Point(10,10)
+xsvg.writeToFile(xsail, margin, pathToFile)
+
+

@@ -15,14 +15,10 @@ class SVG():
     def __init__(sel ):
         pass
 
-    def writeToFile(self, sail, margin, pathToFile):
-        self.sail = sail
-        self.margin = margin
-        self.pathToFile = pathToFile
-
+    def writeToFile(self, sail, pathToFile, off_set=0):
         points = sail.getAsPoints()
 
-        canvas_size, margin, points = recalculate(points)
+        canvas_size, points = recalculate(points, off_set)
         width, height = canvas_size
 
         dwg = svgwrite.Drawing(pathToFile, size=(str(canvas_size[0])+'px', str(canvas_size[1])+'px'))
@@ -42,8 +38,7 @@ class SVG():
         
         dwg.save()
         
-def recalculate(points):
-    margin = 10
+def recalculate(points, off_set):
 
     maxX = 0
     maxY = 0
@@ -52,16 +47,17 @@ def recalculate(points):
 
     # TODO ensure that points are in sequence and make sense 
 
+    off_set_x, off_set_y = off_set
 
     for x,y in points:
         if x > maxX:
             maxX = x
         if y > maxY:
             maxY = y        
-        updated_points.append((x+margin, y+margin))
+        updated_points.append((x+off_set_x, y+off_set_y))
 
     print("maxX=", maxX, " maxY=", maxY)
 
-    canvas_size = (maxX + 2*margin, maxY + 2*margin)
+    canvas_size = (maxX + 2*off_set_x, maxY + 2*off_set_y)
 
-    return canvas_size, margin, updated_points
+    return canvas_size, updated_points

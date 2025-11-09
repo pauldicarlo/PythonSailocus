@@ -25,7 +25,7 @@ xsail.validateSail()
 
 xsvg = svg.SVG()
 pathToFile = "./simpleSailFromClass.svg"
-margin = point.Point(10,10)
-xsvg.writeToFile(xsail, margin, pathToFile)
+off_set = point.Point(10,10)
+xsvg.writeToFile(xsail, pathToFile, off_set)
 
 

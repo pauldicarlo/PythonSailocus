@@ -24,7 +24,14 @@ class Triangle(object):
 		self.point_c = point_c
 
 		self.validate()
-	
+
+	def getAsPoints(self):
+		points = []
+		points.append(self.point_a)
+		points.append(self.point_b)
+		points.append(self.point_c)
+		return points
+
 	################################################################		
 	def validate(self):
 		if self.point_a is None or self.point_b is None or self.point_c is None:

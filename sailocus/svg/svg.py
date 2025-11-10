@@ -7,7 +7,9 @@
 
 import svgwrite
 
+from sailocus.geometry.triangle import Triangle
 from sailocus.geometry.point import Point
+
 from sailocus.sail.sail import Sail
 
 class SVG():
@@ -32,8 +34,22 @@ class SVG():
             stroke='black',
             stroke_width=1
         )
-
         cartesian_group.add(trapezoid)
+
+
+        # TODO - get rid of this triangle, just here now to test things out
+        triangleX = Triangle(Point(0,0), Point (30,400), Point(350,0))
+        trianglePoints = triangleX.getAsPoints()
+        svgTriangle = dwg.polygon(
+            points=trianglePoints,
+            fill='green',
+            stroke='black',
+            stroke_width=1
+        )
+        cartesian_group.add(svgTriangle)
+
+
+
         dwg.add(cartesian_group)
         
         dwg.save()

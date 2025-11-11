@@ -30,10 +30,10 @@ class Point(tuple):
             return False
         return True
 
-    def __new__(cls, a, b):
-        return super().__new__(cls, (a, b))
+    def __new__(cls, x=0, y=0):
+        return super().__new__(cls, (x, y))
         
-    def __init__(self, x, y):
+    def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
 

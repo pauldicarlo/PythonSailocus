@@ -1,0 +1,12 @@
+[project]
+name = "sailocus"
+# ... other metadata
+
+[tool.pytest.ini_options]
+addopts = "-ra -q"
+testpaths = ["tests"]
+[pytest]
+python_paths = ["."]  # ensures 'sailocus' is importable
+testpaths = ["tests"]
+
+

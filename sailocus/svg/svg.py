@@ -11,6 +11,7 @@ from sailocus.geometry.triangle import Triangle
 from sailocus.geometry.point import Point
 
 from sailocus.sail.sail import Sail
+from sailocus.sail.sail import TriangleCenterOfEffort
 
 class SVG():
 
@@ -20,13 +21,17 @@ class SVG():
     def writeToFile(self, sail, pathToFile, off_set=0):
         points = sail.getAsPoints()
 
+        #TODO - need to handle offest for entire set of points/polygons/etc
+        off_set = (0,0)
+
         canvas_size, points = recalculate(points, off_set)
         width, height = canvas_size
 
         dwg = svgwrite.Drawing(pathToFile, size=(str(canvas_size[0])+'px', str(canvas_size[1])+'px'))
         cartesian_group = dwg.g(transform=f"translate(0, {height}) scale(1, -1)")
 
-        dwg.add(dwg.rect(insert=(0, 0), size=('100%', '100%'), fill='darkseagreen'))
+        #dwg.add(dwg.rect(insert=(0, 0), size=('100%', '100%'), fill='darkkhaki'))
+        dwg.add(dwg.rect(insert=(0, 0), size=(str(canvas_size[0])+'px', str(canvas_size[1])+'px'), fill='darkseagreen'))
 
         # dwg.add(dwg.line((10, 50), (250, 100), stroke='blue', stroke_width=5))
 
@@ -40,22 +45,34 @@ class SVG():
         cartesian_group.add(trapezoid)
 
 
-        # TODO - get rid of this triangle, just here now to test things out
-        triangleX = Triangle(Point(0,0), Point (30,400), Point(350,0))
-        trianglePoints = triangleX.getAsPoints()
-        svgTriangle = dwg.polygon(
-            points=trianglePoints,
-            fill='green',
-            stroke='black',
-            stroke_width=1
-        )
-        #cartesian_group.add(svgTriangle)
 
-        dwg.add(cartesian_group)
 
         # coe
-        dwg.add(dwg.circle(center=(sail.coe.center_of_effort[0], sail.coe.center_of_effort[1]), r=30, fill='blue', stroke='black', stroke_width=1))
-        
+        # dwg.add(dwg.circle(center=(sail.coe.center_of_effort[0], sail.coe.center_of_effort[1]), r=2, fill='blue', stroke='black', stroke_width=1))
+
+
+        #for line_segment in sail.coe.centroid_line_segments:
+        #    dwg.add(dwg.line(line_segment.point_a, line_segment.point_b, stroke='black', stroke_width=1))
+
+        for triangle in sail.coe.triangles:
+            tcoe = TriangleCenterOfEffort(triangle)
+            trianglePoints = triangle.getAsPoints()
+            svgTriangle = dwg.polygon(
+                points=trianglePoints,
+                fill='pink',
+                stroke='black',
+                stroke_width=1
+            )
+            cartesian_group.add(svgTriangle)
+            cartesian_group.add(dwg.circle(center=(triangle.centroid), r=2, fill='blue', stroke='black', stroke_width=1))
+            
+
+        # this will only work for a 4 sided sail...
+
+        cartesian_group.add(dwg.line(sail.coe.triangles[0].centroid, sail.coe.triangles[1].centroid, stroke='black', stroke_width=1))
+
+
+        dwg.add(cartesian_group)
         dwg.save()
         
 def recalculate(points, off_set):

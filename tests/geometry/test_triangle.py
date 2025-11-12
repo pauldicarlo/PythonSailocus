@@ -7,19 +7,21 @@
 # tests/geometry/test_triangle.py
 
 import pytest
+
 from sailocus.geometry.point import Point  # direct import works thanks to python_paths
 from sailocus.geometry.triangle import Triangle  # direct import works thanks to python_paths
 
 # -----------------------------
 # Fixtures (if needed)
 # -----------------------------
+@pytest.fixture
+def triangle_points() -> list[Point]:
+    return [ Point(0.0, 0.0), Point(20, 20), Point(40, 40) ]
+
+    
 
 # -----------------------------
 # Basic construction & repr
 # -----------------------------
-def test_triangle():
-    p1 = Point(0.0, 0.0)
-    p2 = Point(20, 20)
-    p3 = Point(40, 40)
-
-    tr1 = Triangle(p1, p2, p3)
+def test_triangle(triangle_points):
+    tr1 = Triangle(triangle_points[0], triangle_points[1], triangle_points[2])

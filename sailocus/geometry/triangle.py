@@ -24,6 +24,7 @@ class Triangle(object):
 		self.point_c = point_c
 
 		self.validate()
+		self.centroid = self.getCentroidPoint()
 
 	def getAsPoints(self):
 		points = []
@@ -73,6 +74,10 @@ class Triangle(object):
 		return lineSegments
 	
 	################################################################
+    # Lines from the midpoint of each side to the opposite vertex
+    # are called "medians of the triangle."  Their common intersection
+    # point is called the "centroid"
+	################################################################
 	def getCentroidPoint(self):
 		self.validate()
 		
@@ -86,3 +91,7 @@ class Triangle(object):
 		
 		
 		return coe
+
+	def getNumSides(self):
+        # should be 3... 
+		return len(self.getAsPoints()) 

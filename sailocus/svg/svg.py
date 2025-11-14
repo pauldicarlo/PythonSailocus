@@ -91,14 +91,10 @@ class SVG():
 
         # Put labels out there
         # TODO: Need to flip them 
+        text_group.add(dwg.text('tack', insert=(sail.tack.x+5, -1 *(sail.tack.y) - 250), fill='black', font_size='20px'))
         text_group.add(dwg.text('throat', insert=(10,-40), fill='black', font_size='20px'))
-        #text_group.add(dwg.text('throat', insert=(-10, 10), fill='black', font_size='20px'))
-        #text_group.add(dwg.text('throat', insert=(-10, -10), fill='black', font_size='20px'))
-        #text_group.add(dwg.text('throat', insert=(10, -10), fill='black', font_size='20px'))
-        #text_group.add(dwg.text('throat', insert=sail.throat, fill='black', font_size='20px'))
-        #text_group.add(dwg.text('clew', insert=(sail.clew.x-40, -sail.clew.y + 10), fill='black', font_size='200px'))
-        #text_group.add(dwg.text('peak', insert=(sail.peak.x, sail.peak.y-20), fill='black', font_size='20px'))
-        #text_group.add(dwg.text('tack', insert=(sail.tack.x+5, sail.tack.y+20), fill='black', font_size='20px'))
+        text_group.add(dwg.text('clew', insert=(sail.clew.x-40, -sail.clew.y), fill='black', font_size='20px'))
+        text_group.add(dwg.text('peak', insert=(sail.peak.x, -(sail.peak.y) +50 ), fill='black', font_size='20px'))
 
 
         # find sail COE...need intersection of 2 lines for 4 sided sail..
@@ -108,7 +104,7 @@ class SVG():
         line_2 =  Line(sail.coe.lines_perpendicular_to_centroid_line_segments[0].point_b, sail.coe.lines_perpendicular_to_centroid_line_segments[1].point_b)
         sail_centroid_point = intersection(line_1, line_2)
         transform_group.add(dwg.circle(center=(sail_centroid_point), r=2, fill='blue', stroke='black', stroke_width=1))
-        text_group.add(dwg.text('COEA', insert=(sail_centroid_point.x, -sail_centroid_point.x), fill='black', font_size='20px'))
+        text_group.add(dwg.text('COE', insert=(sail_centroid_point.x, -sail_centroid_point.x), fill='black', font_size='20px'))
 
 
         # NOTE: Methodology here:  https://drive.google.com/file/d/1bCS8gZQXRBTjdJaQH7uB7qPAZpiGT_Ts/view?usp=sharing 

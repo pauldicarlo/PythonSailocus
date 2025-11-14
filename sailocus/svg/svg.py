@@ -75,14 +75,15 @@ class SVG():
         # TODO: Make this better.
         labelPoint(dwg, text_group, [sail.POINT_NAME_TACK, str(sail.tack)], 
                    Point(sail.tack.x, -1*sail.tack.y-240), 'black', '20px' )
-        text_group.add(dwg.text('throat', insert=(10,-40), fill='black', font_size='20px'))
-        text_group.add(dwg.text('clew', insert=(sail.clew.x-40, -sail.clew.y), fill='black', font_size='20px'))
-        text_group.add(dwg.text('peak', insert=(sail.peak.x, -(sail.peak.y) +50 ), fill='black', font_size='20px'))
+        labelPoint(dwg, text_group, [sail.POINT_NAME_THROAT, str(sail.throat)], 
+                   Point(10, -40), 'black', '20px' )
+        labelPoint(dwg, text_group, [sail.POINT_NAME_CLEW, str(sail.clew)], 
+                   Point(sail.clew.x-75, -sail.clew.y), 'black', '20px' )
+        labelPoint(dwg, text_group, [sail.POINT_NAME_PEAK, str(sail.peak)], 
+                   Point(sail.peak.x, -(sail.peak.y) + 50), 'black', '20px' )
+        labelPoint(dwg, text_group, ['COE: ' + str(sail.coe.center_of_effort)], 
+                   Point(sail.coe.center_of_effort.x, -sail.coe.center_of_effort.x), 'black', '20px' )
 
-        text_group.add(dwg.text('COE', insert=(sail.coe.center_of_effort.x, -sail.coe.center_of_effort.x), fill='black', font_size='20px'))
-
-
-        # TODO:  change translate to use point margin_off_set_point instead of (10,-10) below
         relocation_group = dwg.g(transform=f"translate("+str(margin_off_set.x) +",-"+str(margin_off_set.y)+")")
         relocation_group.add(transform_group)
 

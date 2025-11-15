@@ -23,7 +23,7 @@ from PyQt5.QtCore import Qt
 
 
 # TODO: create a main for running the server version
-# server.runApp()
+server.runApp()
 
 
 

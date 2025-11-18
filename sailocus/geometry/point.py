@@ -16,8 +16,8 @@ from typing import Tuple, Any
 class Point(tuple):
 
     ################################################################   
-#    def __str__(self):
-#        return "----->("+str(self.x)+","+str(self.y)+")"
+    def __str__(self):
+        return '(' + str(int(self.x))  +',' + str(int(self.y)) + ')'
 
     ################################################################
     def getX(self):

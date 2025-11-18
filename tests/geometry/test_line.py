@@ -25,4 +25,10 @@ def test_line_creation():
     assert line1.slope == 1.0
 
 
+    p1b = Point(1.0, 1.0)
+    p2b = Point(1.0, 7.0)
+    line2 = Line(p1b, p2b)
+    assert line2.slope == None
+
+
 

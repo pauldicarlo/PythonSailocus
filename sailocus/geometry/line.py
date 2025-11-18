@@ -8,13 +8,15 @@
 
 from sailocus.geometry.point import Point
 
+from shapely.geometry import LineString
+
 from typing import Optional
 
 #########################################################
 # For a given line defined by two points,
 # return the slope.
 #########################################################
-def getSlope(point_a: Point, point_b: Point) -> float:
+def getSlope(point_a: Point, point_b: Point): # TODO fix and get to work with mypy -> float:
     method="getSlope():"
 
     if point_a is None or point_b is None:
@@ -30,7 +32,7 @@ def getSlope(point_a: Point, point_b: Point) -> float:
     except ZeroDivisionError:
         # TODO: zero devision is slope of 0
         # return None #slope is undefined
-        return 0
+        return None 
 
 
 #########################################################
@@ -80,12 +82,21 @@ class Line(object):
         self.point_a = point_a
         self.point_b = point_b
         self.slope = slope
+        self.y_intercept = None
         
         if self.point_a is None or ( self.point_b is None and self.slope is None ):
             raise ValueError("Line: Constructor parameters require at least point a and ( point b or slope):" + str(self))
             
-        if slope is None:  # calculate the slope:
-            self.slope = getSlope(self.point_a, self.point_b)
+        self.slope = getSlope(self.point_a, self.point_b)
+        if self.slope is None:  # calculate the slope:
+            if point_a.x == 0:
+                self.y_intercept = point_a.y
+            else:
+                self.y_intercept = None # line never intercepts the y-axis
+        else: # calculate the y-intercept
+            # c1 = y1 - m1 * x1
+            self.y_intercept = point_a.y - self.slope*self.point_a.x
+
             
         self.validate()
 
@@ -120,33 +131,38 @@ class Line(object):
 #########################################################
 def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work with mypy -> Optional[Point]:
     method="intersection"
+
+    line1 = LineString([line_a.point_a, line_a.point_b])
+    line2 = LineString([line_b.point_a, line_b.point_b])
+    intersection_point = line1.intersection(line2)
+    if intersection_point is None:
+        print('intersection point Is none!')
+        return None
+    print(intersection_point)
+    return Point(intersection_point.x, intersection_point.y)
+
     
+    '''
+    TODO: get my code to work and remove dependency on 
     # y = mx + b
     
     m1=line_a.slope
     m2=line_b.slope
     
-    #print("slope1="+str(m1))
-    #print("slope2="+str(m2))
     
     b1=yIntercept(m1, line_a.point_a);
     b2=yIntercept(m2, line_b.point_b);
-    
-    #print("yIntercept1="+str(b1))
-    #print("yIntercept2="+str(b2))
-    
-    #print(type(m1))
-    #print(type(b1))
     
     # To find the midpoint
     # y = mx + b
     print(method + ": b1="+str(b1)+", b2="+str(b2) + ", m1=" + str(m1) + ", m2=" + str(m2))
     
     # TODO: Need to get this working for undefined slopes.  Needs better/more clean logic for all situations
+    # TODO: How do/should we handle coincident lines (infinite intersections)?
     # if Slopes are the same, 
     # lines never intersect...
     # or at least have no single point of intersect
-    if (m1 == m2):  
+    if (m1 == m2) and line_a.y_intercept == line_b.y_intercept:  
         return None
     if m1 is None:
         pass
@@ -158,9 +174,18 @@ def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work w
     if b2 == None:
         pass
     
-    x = int((b2 -b1)/(m1-m2))
-    y = int(m1*(float(b2-b1)/float(m1-m2)) + float(b1))
+    try:
+        x = int((b2 -b1)/(m1-m2))
+        y = int(m1*(float(b2-b1)/float(m1-m2)) + float(b1))
+    except TypeError:
+        line1 = LineString([line_a.point_a, line_a.point_b])
+        line2 = LineString([line_b.point_a, line_b.point_b])
+        intersection_point = line1.intersection(line2)
+        print(intersection_point)
+        return Point(intersection_point.x, intersection_point.y)
+
     return Point(x,y)
+    '''
 
 
 

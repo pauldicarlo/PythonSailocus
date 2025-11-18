@@ -13,9 +13,7 @@ from sailocus.geometry.linesegment import LineSegment
 from sailocus.geometry.linesegment import getPerpendicularLineSegmentPoint
 from sailocus.geometry.point import Point
 
-
 class Sail(object):
-
     ################################################################
     def __init__(self, tack, clew, head=None, peak=None, throat=None, sailName = None):
     

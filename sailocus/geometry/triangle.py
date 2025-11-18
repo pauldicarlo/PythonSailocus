@@ -78,7 +78,7 @@ class Triangle(object):
     # are called "medians of the triangle."  Their common intersection
     # point is called the "centroid"
 	################################################################
-	def getCentroidPoint(self) -> Optional[Point]:
+	def getCentroidPoint(self): # TODO uncomment and get to work with mypy -> Optional[Point]:
 		self.validate()
 		
 		# the centroid is the intersection of the centroid line segments.

@@ -118,7 +118,7 @@ class Line(object):
 #
 # https://stackoverflow.com/questions/31506740/java-find-intersection-of-two-lines
 #########################################################
-def intersection(line_a: Line, line_b: Line) -> Optional[Point]:
+def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work with mypy -> Optional[Point]:
     method="intersection"
     
     # y = mx + b

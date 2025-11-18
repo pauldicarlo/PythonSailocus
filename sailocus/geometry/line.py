@@ -8,11 +8,13 @@
 
 from sailocus.geometry.point import Point
 
+from typing import Optional
+
 #########################################################
 # For a given line defined by two points,
 # return the slope.
 #########################################################
-def getSlope(point_a: Point, point_b: Point):
+def getSlope(point_a: Point, point_b: Point) -> float:
     method="getSlope():"
 
     if point_a is None or point_b is None:
@@ -34,7 +36,7 @@ def getSlope(point_a: Point, point_b: Point):
 #########################################################
 # Given a slope an an existing point, find the y intercept
 #########################################################
-def yIntercept(slope, point: Point):
+def yIntercept(slope: float, point: Point) -> float:
     
     if slope is None:
         return None
@@ -52,7 +54,7 @@ def yIntercept(slope, point: Point):
 # ====> y=mx+b
 # ====> y=slope*x + b
 #########################################################
-def newPointOnLine(slope, newX, existingPoint: Point):
+def newPointOnLine(slope, newX, existingPoint: Point) -> Point:
     # TODO - need to be able to handled slope=NONE (undefined)
 
     # TODO 
@@ -116,7 +118,7 @@ class Line(object):
 #
 # https://stackoverflow.com/questions/31506740/java-find-intersection-of-two-lines
 #########################################################
-def intersection(line_a: Line, line_b: Line):
+def intersection(line_a: Line, line_b: Line) -> Optional[Point]:
     method="intersection"
     
     # y = mx + b

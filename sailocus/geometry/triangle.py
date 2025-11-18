@@ -10,7 +10,7 @@ from sailocus.geometry.linesegment import LineSegment
 from sailocus.geometry.line import intersection
 from sailocus.geometry.point import Point
 
-
+from typing import Optional
 
 ################################################################
 #
@@ -78,7 +78,7 @@ class Triangle(object):
     # are called "medians of the triangle."  Their common intersection
     # point is called the "centroid"
 	################################################################
-	def getCentroidPoint(self) -> Point:
+	def getCentroidPoint(self) -> Optional[Point]:
 		self.validate()
 		
 		# the centroid is the intersection of the centroid line segments.

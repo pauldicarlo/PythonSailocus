@@ -11,6 +11,7 @@ paul.dicarlo@gmail.com
 * pip3 freeze > requirements.txt
 * pip3 install  -r requirements.txt
 * python3 -m pytest
+* mypy .
 
 # Sample HTML 
 Screen grab of first time getting simple code path to work for a web interface to generate the Center of Effort (COE).

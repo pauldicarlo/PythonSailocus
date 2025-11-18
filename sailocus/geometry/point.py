@@ -54,7 +54,7 @@ class Point(tuple):
 
 PATTERN = re.compile(r'^\(\s*([-+]?\d{1,3}(?:,\d{3})*)\s*,\s*([-+]?\d{1,3}(?:,\d{3})*)\s*\)$')
 
-def str_to_point(s: str) -> Point[int, int]:
+def str_to_point(s: str) -> Point:
     m = PATTERN.fullmatch(s)
     if not m:
         raise ValueError(f"Invalid format: {s!r}")

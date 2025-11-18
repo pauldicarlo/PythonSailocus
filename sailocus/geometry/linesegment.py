@@ -12,7 +12,7 @@ from sailocus.geometry.line import newPointOnLine, getSlope
 #############################################################################################
 # For pointA, return a point weighed perpendicular to the linesegement as defined by pointb
 #############################################################################################
-def getPerpendicularLineSegmentPoint(pointA: Point, pointB: Point, weight):
+def getPerpendicularLineSegmentPoint(pointA: Point, pointB: Point, weight) -> Point:
 		print("__________________________________________________")
 		theSlope = getSlope(pointA, pointB)
 		#y_offset = -1* COE.COEMath.getOffsetForY(center_of_effort_1, center_of_effort_2)
@@ -60,7 +60,7 @@ class LineSegment(object):
 			raise ValueError("LineSegement: both points must be non-null.  " + str(self))
 	
 	################################################################	
-	def getMidpoint(self):
+	def getMidpoint(self) -> Point:
 		self.validate()
 		
 		return Point(int((self.point_a.x+self.point_b.x)/2), int((self.point_a.y+self.point_b.y)/2))  

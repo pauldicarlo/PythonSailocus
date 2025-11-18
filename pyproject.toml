@@ -10,3 +10,9 @@ python_paths = ["."]  # ensures 'sailocus' is importable
 testpaths = ["tests"]
 
 
+[ tool.mypy ]
+[[ tool.mypy.overrides ]]
+module = "svgwrite.*"
+ignore_missing_imports = true   # old style, still works
+# or the newer, more precise way:
+follow_imports = "skip"         # optional, if you also want to skip checking inside svgwrite

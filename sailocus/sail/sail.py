@@ -5,10 +5,13 @@
 @contact: https://github.com/pauldicarlo
 '''
 
+from typing import Optional, List
+
 from sailocus.geometry.line import Line, intersection
 from sailocus.geometry.triangle import Triangle
 from sailocus.geometry.linesegment import LineSegment
 from sailocus.geometry.linesegment import getPerpendicularLineSegmentPoint
+from sailocus.geometry.point import Point
 
 
 class Sail(object):
@@ -62,16 +65,16 @@ class Sail(object):
     ################################################################
     # Returns the number of sides.  3 it's a triangle.
     # 4 it's a sprit or lug or something like that
-    def getNumSides(self):
+    def getNumSides(self) -> int:
         if self.head is None:
             return 4
         return 3
 
     ################################################################
-    def calculateCenterOfEffort(self):
+    def calculateCenterOfEffort(self) : # TODO uncomment and fix w/mypy -> CenterOfEffort:
         return CenterOfEffort(self)
 
-    def getAsPoints(self):
+    def getAsPoints(self) -> list[Point]:
         points = []
 
         points.append(self.peak)
@@ -82,7 +85,7 @@ class Sail(object):
         return points
 
     ################################################################
-    def getComponentTriangles(self):
+    def getComponentTriangles(self) -> List[Triangle]:
         componentTriangles = []
         if ( 4 == self.getNumSides()):
             componentTriangles.append(Triangle(self.peak, self.throat, self.clew))

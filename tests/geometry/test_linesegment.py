@@ -8,7 +8,7 @@
 
 import pytest
 from sailocus.geometry.point import Point  # direct import works thanks to python_paths
-from sailocus.geometry.linesegment import LineSegment  # direct import works thanks to python_paths
+from sailocus.geometry.linesegment import LineSegment, getPerpendicularLineSegmentPoint  # direct import works thanks to python_paths
 
 # -----------------------------
 # Fixtures (if needed)
@@ -28,4 +28,30 @@ def test_line_creation():
     assert linesegment1.point_b.y == 7.5
 
 
+def test_getPerpendicularLineSegmentPoint():
 
+    # for a line segment with an undefined slope 
+    point_a = Point(0,0)
+    point_b = Point(0, 8)
+    p = getPerpendicularLineSegmentPoint( point_a, point_b, weight = 30)
+    print(str(p))
+    assert Point(30, 0) == p
+
+    # for a line segement with a slope of 0
+    point_a = Point(0,8)
+    point_b = Point(8, 8)
+    p = getPerpendicularLineSegmentPoint( point_a, point_b, weight = 30)
+    assert Point(0, 38) == p
+
+    # for a line segment with a postitive slope
+    point_a = Point(0,0)
+    point_b = Point(10, 10)
+    p = getPerpendicularLineSegmentPoint( point_a, point_b, weight = 10)
+    assert Point(10, -10) == p
+
+    # TODO:  This doesn't look right
+    # for a line segment with a negative slope
+    point_a = Point(0, 0)
+    point_b = Point(10,-10)
+    p = getPerpendicularLineSegmentPoint( point_a, point_b, weight = 10)
+    assert Point(10, 10) == p

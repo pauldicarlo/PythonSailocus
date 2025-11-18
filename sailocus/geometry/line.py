@@ -36,21 +36,6 @@ def getSlope(point_a: Point, point_b: Point): # TODO fix and get to work with my
 
 
 #########################################################
-# Given a slope an an existing point, find the y intercept
-#########################################################
-def yIntercept(slope: float, point: Point) -> float:
-    
-    if slope is None:
-        return None
-    
-    #y=mx+b
-    #b=mx-y
-    intercept = float(float(point.getY()) - float(slope*point.getX()))
-    return intercept
-
-
-
-#########################################################
 # For a given X, calculate th
 # 
 # ====> y=mx+b
@@ -141,55 +126,6 @@ def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work w
     print(intersection_point)
     return Point(intersection_point.x, intersection_point.y)
 
-    
-    '''
-    TODO: get my code to work and remove dependency on 
-    # y = mx + b
-    
-    m1=line_a.slope
-    m2=line_b.slope
-    
-    
-    b1=yIntercept(m1, line_a.point_a);
-    b2=yIntercept(m2, line_b.point_b);
-    
-    # To find the midpoint
-    # y = mx + b
-    print(method + ": b1="+str(b1)+", b2="+str(b2) + ", m1=" + str(m1) + ", m2=" + str(m2))
-    
-    # TODO: Need to get this working for undefined slopes.  Needs better/more clean logic for all situations
-    # TODO: How do/should we handle coincident lines (infinite intersections)?
-    # if Slopes are the same, 
-    # lines never intersect...
-    # or at least have no single point of intersect
-    if (m1 == m2) and line_a.y_intercept == line_b.y_intercept:  
-        return None
-    if m1 is None:
-        pass
-    if m2 is None:
-        pass
-
-    if b1 == None:
-        pass
-    if b2 == None:
-        pass
-    
-    try:
-        x = int((b2 -b1)/(m1-m2))
-        y = int(m1*(float(b2-b1)/float(m1-m2)) + float(b1))
-    except TypeError:
-        line1 = LineString([line_a.point_a, line_a.point_b])
-        line2 = LineString([line_b.point_a, line_b.point_b])
-        intersection_point = line1.intersection(line2)
-        print(intersection_point)
-        return Point(intersection_point.x, intersection_point.y)
-
-    return Point(x,y)
-    '''
-
-
-
-        
 #########################################################
 # M A I N 
 #########################################################

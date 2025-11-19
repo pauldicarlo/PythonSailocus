@@ -14,7 +14,7 @@ paul.dicarlo@gmail.com
 * mypy .
 
 # Sample HTML 
-Screen grab of first time getting simple code path to work for a web interface to generate the Center of Effort (COE).
+Screen grab of first time getting simple code path to work for a web interface to generate the Center of Effort (CoE).
 ![alt text](materials/firstSuccessfulSVGInHtml.png)
 
 

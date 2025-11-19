@@ -1,40 +1,137 @@
+<!-- NOTE: I used Grok to create the HTML for this template and then modified it.  I don't have much if (any) UI experience.-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sailocus: Calculate Center of Effort(COE) </title>
+    <title>Enter 3 Coordinates</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .container { max-width: 600px; margin: auto; }
-        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
-        input[type="submit"] { padding: 10px 20px; font-size: 16px; }
-        .result { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .point {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .point label {
+            display: inline-block;
+            width: 15px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 75px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Sailocus: Calculate Center of Effort(COE)</h2>
-        <h3>Entery (x,y) coordinates for a four-sided sail.</h3>
-        <a>You can create a four-sided sail by entering the (x,y) coordinates.  Ideally use mm for your units of measure.</a>
+        <h1>Sail Center of Effort (CoE)</h1>
+        <h2>Calculating for 4-sided Sail</h2>
+        <a>Enter coordinates in (x,y) values.  Unit of measurements is millimeters (mm).</a>
         <br></br>
-        <form method="POST">
-            <label for="tack">Tack</label>
-            <input type="text" name="tack" placeholder="Type something here in the form of (x,y)..." required value="(0, 0)">
+        <a>
+             <p style="font-style: italic;">
+            "The approximate locus of net aerodynamic force on a craft with a single sail is the centre of effort (CE) at the geometric centre of the sail". 
+            <a href="https://en.wikipedia.org/wiki/Forces_on_sails">en.wikipedia.org/wiki/Forces_on_sails</a>
+            </p>
+        </a>
 
-            <label for="throat">Throat</label>
-            <input type="text" name="throat" placeholder="Type something here in the form of (x,y)..." required value="(10, 233)">
-
-            <label for="peak">Peak</label>
-            <input type="text" name="peak" placeholder="Type something here in the form of (x,y)..." required value="(213,510)">
-
-            <label for="clew">Clew</label>
-            <input type="text" name="clew" placeholder="Type something here in the form of (x,y)..." required value="(397,29)">
+        <div style="text-align: center">
             <br>
-            <input type="submit" value="Submit">
-        </form>
+            <a href="https://github.com/pauldicarlo/PythonSailocus">PySailocus</a> - Python exploration into Center-Of-Effort for sails
+        </div>
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-                {% if svg_content %}
+        <form method="POST">
+            <div class="point">
+                <h3>Tack</h3>
+                <label for="x3">X:</label>
+                <input type="text" id="tack_x" name="tack_x" placeholder="e.g. -5" value="{{ initial_value_tack_x }}" required>
+                &nbsp;&nbsp;&nbsp;
+                <label for="y3">Y:</label>
+                <input type="text" id="tack_y" name="tack_y" placeholder="e.g. 8" value="{{ initial_value_tack_y }}"i required>
+            </div>
+
+            <div class="point">
+                <h3>Throat</h3>
+                <label for="x2">X:</label>
+                <input type="text" id="throat_x" name="throat_x" placeholder="e.g. 20" value="{{ initial_value_throat_x }}" required>
+                &nbsp;&nbsp;&nbsp;
+                <label for="y2">Y:</label>
+                <input type="text" id="throat_y" name="throat_y" placeholder="e.g. 15.7" value="{{ initial_value_throat_y }}" required>
+            </div>
+
+            <div class="point">
+                <h3>Peak</h3>
+                <label for="x1">X:</label>
+                <input type="text" id="peak_x" name="peak_x" value="{{ initial_value_peak_x }}" required>
+                &nbsp;&nbsp;&nbsp;
+                <label for="y1">Y:</label>
+                <input type="text" id="peak_y" name="peak_y" value="{{ initial_value_peak_y }}" required>
+            </div>
+
+            <div class="point">
+                <h3>Clew</h3>
+                <label for="x4">X:</label>
+                <input type="text" id="clew_x" name="clew_x" placeholder="e.g. -5" value="{{ initial_value_clew_x }}" rrequired>
+                &nbsp;&nbsp;&nbsp;
+                <label for="y4">Y:</label>
+                <input type="text" id="clew_y" name="clew_y" placeholder="e.g. 8" value="{{ initial_value_clew_y }}" rrequired>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit">Submit Coordinates</button>
+            </div>
+        </form>
+        {% if svg_content %}
         <div class="result">
             <strong>SVG Generated:</strong>
             <div class="svg-container" style="margin-top:15px;">
@@ -42,14 +139,6 @@
             </div>
         </div>
         {% endif %}
-
-        <!--
-        {% if message %}
-        <div class="result">
-            <strong>You entered:</strong> {{ message }}
-        </div>
-        {% endif %}
-    -->
     </div>
 </body>
 </html>

@@ -53,6 +53,9 @@ class Point(tuple):
 
 
 PATTERN = re.compile(r'^\(\s*([-+]?\d{1,3}(?:,\d{3})*)\s*,\s*([-+]?\d{1,3}(?:,\d{3})*)\s*\)$')
+# match coordinate pair strings in (), where each number can have optional thousands separators (commas) and an optional sign (+ or -).
+
+
 
 def str_to_point(s: str) -> Point:
     m = PATTERN.fullmatch(s)

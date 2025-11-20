@@ -1,6 +1,6 @@
-<!-- NOTE: I used Grok to create the HTML for this template and then modified it.  I don't have much if (any) UI experience.-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +13,19 @@
             padding: 20px;
             background-color: #f5f5f5;
         }
+
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
             color: #333;
         }
+
         .point {
             margin: 20px 0;
             padding: 15px;
@@ -30,11 +33,21 @@
             border-radius: 8px;
             background-color: #fafafa;
         }
-        .point label {
+
+        .pointlabel {
             display: inline-block;
             width: 15px;
             font-weight: bold;
         }
+
+        .quotebox {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #e1edda;
+        }
+
         input[type="text"] {
             width: 75px;
             padding: 8px;
@@ -42,6 +55,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         button {
             margin-top: 20px;
             padding: 12px 30px;
@@ -52,80 +66,134 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #0056b3;
         }
+
         .message {
             margin: 15px 0;
             padding: 10px;
             border-radius: 5px;
         }
-        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+
+        .inline-field {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+
+
+            display: grid;
+            grid-template-columns: auto 1fr;
+            /* label column | input column */
+            gap: 8px 12px;
+            /* vertical gap | horizontal gap */
+            align-items: center;
+            max-width: 400px;
+        }
+
+        .inline-field label {
+            margin: 0;
+            width: 30px;
+            /* or whatever fixed width you want */
+            flex-shrink: 0;
+        }
+
+        .inline-field input {
+            flex: 1;
+        }
+
+
+
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Sail Center of Effort (CoE)</h1>
         <h2>Calculating for 4-sided Sail</h2>
-        <a>Enter coordinates in (x,y) values.  Unit of measurements is millimeters (mm).</a>
+        <a>Enter coordinates in (x,y) values. Unit of measurements is millimeters (mm).</a>
         <br></br>
-        <a>
-             <p style="font-style: italic;">
-            "The approximate locus of net aerodynamic force on a craft with a single sail is the centre of effort (CE) at the geometric centre of the sail". 
-            <a href="https://en.wikipedia.org/wiki/Forces_on_sails">en.wikipedia.org/wiki/Forces_on_sails</a>
+        <div class="quotebox">
+            <p style="font-style: italic;">
+                "The approximate locus of net aerodynamic force on a craft with a single sail is the centre of effort
+                (CE) at the geometric centre of the sail".
+                <a href="https://en.wikipedia.org/wiki/Forces_on_sails">en.wikipedia.org/wiki/Forces_on_sails</a>
             </p>
-        </a>
+        </div>
 
         <div style="text-align: center">
             <br>
-            <a href="https://github.com/pauldicarlo/PythonSailocus">PySailocus</a> - Python exploration into Center-Of-Effort for sails
+            <a href="https://github.com/pauldicarlo/PythonSailocus">PySailocus</a> - Python exploration into
+            Center-Of-Effort for sails
         </div>
         <!-- Flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="message {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
 
+        <br>
         <form method="POST">
-            <div class="point">
-                <h3>Tack</h3>
+
+            <div style="display: grid; grid-template-columns: auto 10px auto 20px auto 20px; 
+            align-items: center; gap: 8px 15px; flex-wrap: wrap; font-family: sans-serif;">
+
+                <span style="white-space: nowrap;">Tack coordinates</span>
                 <label for="x3">X:</label>
-                <input type="text" id="tack_x" name="tack_x" placeholder="e.g. -5" value="{{ initial_value_tack_x }}" required>
-                &nbsp;&nbsp;&nbsp;
+                <input type="text" id="tack_x" name="tack_x" placeholder="e.g. -5" value="{{ initial_value_tack_x }}"
+                    style="width:90px;" required>
                 <label for="y3">Y:</label>
-                <input type="text" id="tack_y" name="tack_y" placeholder="e.g. 8" value="{{ initial_value_tack_y }}"i required>
-            </div>
+                <input type="text" id="tack_y" name="tack_y" placeholder="e.g. 8" value="{{ initial_value_tack_y }}"
+                    style="width:90px;" required>
 
-            <div class="point">
-                <h3>Throat</h3>
+                <br>
+                <span style="white-space: nowrap;">Throat coordinates</span>
                 <label for="x2">X:</label>
-                <input type="text" id="throat_x" name="throat_x" placeholder="e.g. 20" value="{{ initial_value_throat_x }}" required>
-                &nbsp;&nbsp;&nbsp;
+                <input type="text" id="throat_x" name="throat_x" placeholder="e.g. 20"
+                    value="{{ initial_value_throat_x }}" style="width:90px;" required>
                 <label for="y2">Y:</label>
-                <input type="text" id="throat_y" name="throat_y" placeholder="e.g. 15.7" value="{{ initial_value_throat_y }}" required>
-            </div>
+                <input type="text" id="throat_y" name="throat_y" placeholder="e.g. 15.7"
+                    value="{{ initial_value_throat_y }}" style="width:90px;" required>
 
-            <div class="point">
-                <h3>Peak</h3>
+                <br>
+                <span style="white-space: nowrap;">Peak coordinates</span>
                 <label for="x1">X:</label>
-                <input type="text" id="peak_x" name="peak_x" value="{{ initial_value_peak_x }}" required>
-                &nbsp;&nbsp;&nbsp;
+                <input type="text" id="peak_x" name="peak_x" value="{{ initial_value_peak_x }}" style="width:90px;"
+                    required>
                 <label for="y1">Y:</label>
-                <input type="text" id="peak_y" name="peak_y" value="{{ initial_value_peak_y }}" required>
+                <input type="text" id="peak_y" name="peak_y" value="{{ initial_value_peak_y }}" style="width:90px;"
+                    required>
+
+                <br>
+                <span style="white-space: nowrap;">Clew coordinates</span>
+                <label for="x4">X:</label>
+                <input type="text" id="clew_x" name="clew_x" placeholder="e.g. -5" value="{{ initial_value_clew_x }}"
+                    style="width:90px;" required>
+                <label for="y4">Y:</label>
+                <input type="text" id="clew_y" name="clew_y" placeholder="e.g. 8" value="{{ initial_value_clew_y }}"
+                    style="width:90px;" required>
+
             </div>
 
-            <div class="point">
-                <h3>Clew</h3>
-                <label for="x4">X:</label>
-                <input type="text" id="clew_x" name="clew_x" placeholder="e.g. -5" value="{{ initial_value_clew_x }}" rrequired>
-                &nbsp;&nbsp;&nbsp;
-                <label for="y4">Y:</label>
-                <input type="text" id="clew_y" name="clew_y" placeholder="e.g. 8" value="{{ initial_value_clew_y }}" rrequired>
-            </div>
+
 
             <div style="text-align: center;">
                 <button type="submit">Submit Coordinates</button>
@@ -141,4 +209,5 @@
         {% endif %}
     </div>
 </body>
+
 </html>

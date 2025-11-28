@@ -4,8 +4,18 @@ paul.dicarlo@gmail.com
 The purpose of this project is to explore creation of REST APIs and Python.
 The intent is to provide APIs (and a web app) that allows for creation of sail geometries and calculation of the sail's Center of Effort (CoE).
 
-## Requirements
-* pip install svgwrite
+>> "The approximate locus of net aerodynamic force on a craft with a single sail is the centre of effort (CE ) at the geometric centre of the sail". https://en.wikipedia.org/wiki/Forces_on_sails
+
+### Background
+Sailocus is an attempt to write code that will explore the aerodynamic forces on sails. It is meant to be a development exercise to build my proficiency in some new programming languages... as well as better understand forces on sails... and maybe even design my own sails someday.
+
+### The Name Sailocus
+The name Sailocus comes from "sail" and "locus" (see quote above)
+
+### Caveat
+You should only use sails designed and made by a professional. This code is just for a learning excercise.
+
+
 
 # Setting up environment
 * python3 -m venv .venv 
@@ -13,6 +23,8 @@ The intent is to provide APIs (and a web app) that allows for creation of sail g
     * On Windows: myenv/Scripts/Activate
 * pip3 freeze > requirements.txt
 * pip3 install  -r requirements.txt
+
+# Testing
 * python3 -m pytest
 * mypy .
 

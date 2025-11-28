@@ -4,22 +4,16 @@
 @license: MIT
 @contact: https://github.com/pauldicarlo
 '''
-import svgwrite
 
 from sailocus.geometry import point
-from sailocus.geometry import line
-from sailocus.geometry import triangle
 
 from sailocus.svg import svg
-
-from sailocus.server import server
 
 from sailocus.sail import sail
 
 import sys
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtSvg import QSvgWidget
-from PyQt5.QtCore import Qt
 
 
 # import sys

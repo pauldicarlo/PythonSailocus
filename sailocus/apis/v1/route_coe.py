@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter 
 
 router = APIRouter()
 
 
-@router.get("/coe")
+@router.get("/")
 def get_coe():
-    pass 
+    # TODO implement this properly
+    return {"message": "Hello, At this point something should happen, but at least you know you got here"}

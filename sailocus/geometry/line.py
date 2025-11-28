@@ -10,8 +10,6 @@ from sailocus.geometry.point import Point
 
 from shapely.geometry import LineString
 
-from typing import Optional
-
 #########################################################
 # For a given line defined by two points,
 # return the slope.

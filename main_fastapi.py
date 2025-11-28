@@ -21,4 +21,4 @@ app = start_app()
 
 @app.get("/")
 def index():
-    return {"msg":"Hello.  This is the base doc"}
+    return {"msg":"Hello.  This is Paul and at least the server is working"}

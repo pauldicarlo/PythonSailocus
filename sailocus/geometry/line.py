@@ -115,29 +115,30 @@ class Line(object):
 # https://stackoverflow.com/questions/31506740/java-find-intersection-of-two-lines
 #########################################################
 def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work with mypy -> Optional[Point]:
-    method="intersection"
 
     line1 = LineString([line_a.point_a, line_a.point_b])
     line2 = LineString([line_b.point_a, line_b.point_b])
-    intersection_point = line1.intersection(line2)
+    intersection_point =line1.intersection(line2)
     if intersection_point is None:
         print('intersection point Is none!')
         return None
-    print(intersection_point)
-    return Point(intersection_point.x, intersection_point.y)
+    if intersection_point is None:
+        return None
+
+    return Point(intersection_point.x, intersection_point.y) # type: ignore
 
 #########################################################
 # M A I N 
 #########################################################
 if __name__ == "__main__":
     # just some tests...
-    l = Line(Point(1,1),Point(4,4))
-    print(l)
+    myline =Line(Point(1,1),Point(4,4))
+    print(myline)
     
     #print (Line (None, None, None))
     print(str(getSlope(Point(50,10), Point(24,115))))
     try:
-        print( str (Line(Point(1,1), None, 1.0)))
+        print( str (Line(Point(1,1), None, 1)))
         raise ValueError("Expected a value error here!!!")
     except ValueError:
         print('Expected error')

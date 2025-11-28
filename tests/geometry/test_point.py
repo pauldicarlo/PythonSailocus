@@ -14,7 +14,7 @@ from sailocus.geometry.point import Point  # direct import works thanks to pytho
 # -----------------------------
 @pytest.fixture
 def origin() -> Point:
-    return Point(0.0, 0.0)
+    return Point(0, 0)
 
 
 '''
@@ -32,9 +32,9 @@ def p2() -> Point:
 # Basic construction & repr
 # -----------------------------
 def test_point_creation():
-    p = Point(1.5, -2.8)
-    assert p.x == 1.5
-    assert p.y == -2.8
+    p = Point(15, -28)
+    assert p.x == 15
+    assert p.y == -28
 
 
 '''

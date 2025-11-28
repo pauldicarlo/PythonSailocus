@@ -97,6 +97,15 @@ def generate_svg_endpoint():
     tack_str = request.args.get('tack')      # → "(1,2)"
     clew_str = request.args.get('clew')      # → "(1,2)"
 
+    if peak_str is None:
+        return "peak must be populated with a valid value", 400
+    if throat_str is None:
+        return "throat must be populated with a valid value", 400
+    if tack_str is None:
+        return "tack must be populated with a valid value", 400
+    if clew_str is None:
+        return "clew must be populated with a valid value", 400
+
     peak = point.str_to_point(peak_str)
     throat = point.str_to_point(throat_str)
     tack = point.str_to_point(tack_str)

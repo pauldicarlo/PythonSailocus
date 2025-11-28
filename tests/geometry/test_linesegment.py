@@ -6,7 +6,6 @@
 '''
 # tests/geometry/test_linesegment.py
 
-import pytest
 from sailocus.geometry.point import Point  # direct import works thanks to python_paths
 from sailocus.geometry.linesegment import LineSegment, getPerpendicularLineSegmentPoint  # direct import works thanks to python_paths
 
@@ -19,13 +18,13 @@ from sailocus.geometry.linesegment import LineSegment, getPerpendicularLineSegme
 # -----------------------------
 def test_line_creation():
     # Simple case where slope would be 1.0
-    p1 = Point(1.0, 1.0)
-    p2= Point(7.5, 7.5)
+    p1 = Point(10, 10)
+    p2= Point(75, 75)
     linesegment1 = LineSegment(p1, p2)
-    assert linesegment1.point_a.x == 1.0
-    assert linesegment1.point_a.y == 1.0
-    assert linesegment1.point_b.x == 7.5
-    assert linesegment1.point_b.y == 7.5
+    assert linesegment1.point_a.x == 10
+    assert linesegment1.point_a.y == 10
+    assert linesegment1.point_b.x == 75
+    assert linesegment1.point_b.y == 75
 
 
 def test_getPerpendicularLineSegmentPoint():

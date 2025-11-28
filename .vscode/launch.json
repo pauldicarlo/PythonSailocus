@@ -14,10 +14,10 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "main_web.py",
+            "name": "main_flask.py",
             "type": "debugpy",
             "request": "launch",
-            "program": "main_web.py",
+            "program": "main_flask.py",
             "console": "integratedTerminal"
         },
         {

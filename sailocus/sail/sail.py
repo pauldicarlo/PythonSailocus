@@ -55,10 +55,11 @@ class Sail(object):
     # peak throat
     # tack clew
     def validateSail(self):
+        if self.peak is None or self.tack is None or self.clew is None:
+            raise TypeError("Peak and Tack and Clew must be set")
         if self.peak.y <= self.tack.y or self.peak.y <= self.clew.y:
             raise ValueError("Peak must have y value greater than tack or clew. \n" +str(self) )
         return
-
 
     ################################################################
     # Returns the number of sides.  3 it's a triangle.

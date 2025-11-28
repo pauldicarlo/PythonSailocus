@@ -16,7 +16,7 @@ from sailocus.geometry.triangle import Triangle  # direct import works thanks to
 # -----------------------------
 @pytest.fixture
 def triangle_points() -> list[Point]:
-    return [ Point(0.0, 0.0), Point(20, 20), Point(40, 0) ]
+    return [ Point(0, 0), Point(20, 20), Point(40, 0) ]
 
     
 

@@ -7,18 +7,18 @@
 
 import svgwrite
 
-from sailocus.geometry.triangle import Triangle
 from sailocus.geometry.point import Point
-from sailocus.geometry.line import intersection, Line
 
 from sailocus.sail.sail import Sail
-from sailocus.sail.sail import TriangleCenterOfEffort
 
 class SVG():
 
     # For a given Sail object, write a diagram of it with the COE to a SVG file.
     def createSailSVG(self, sail:Sail, path_to_file: str, write_file: bool, margin_off_set= Point(0,0)) -> svgwrite.Drawing:
         points = sail.getAsPoints()
+
+        if sail is None:
+            raise ValueError("Sail must not be done")
 
         #TODO - need to handle offest for entire set of points/polygons/etc
 
@@ -68,6 +68,15 @@ class SVG():
 
         # Need an inner group that flips again so text will be in right orientation 
         text_group = transform_group.add(dwg.g(transform="scale(1, -1)"))  # Flip back!
+
+        if sail.throat is None:
+            raise ValueError("sail.throat cannot be None")
+        if sail.peak is None:
+            raise ValueError("sail.peak cannot be None")
+        if sail.coe is None:
+            raise ValueError("sail.coecannot be None")
+        if sail.coe.center_of_effort is None:
+            raise ValueError("sail.coecannot.center_of_effort be None")
 
         # TODO: Make this better.
         labelPoint(dwg, text_group, [sail.POINT_NAME_TACK, str(sail.tack)], 

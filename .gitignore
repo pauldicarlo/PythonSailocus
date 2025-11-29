@@ -7,6 +7,8 @@ simpleSailFromClass.svg
 someFile.svg
 *.svg
 
+request.json
+
 myenv
 .venv
 

@@ -6,13 +6,16 @@
 '''
 
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 from sailocus.sail import sail
 from sailocus.geometry import point
 from sailocus.svg import svg
+
+import logging
+import uuid
 
 router = APIRouter()
 
@@ -30,14 +33,31 @@ class FourSidedSailParameters(BaseModel):
     clew_y: int = Field(..., ge=0, le=2000, description="Y position in mm of Clew")
 
 
+# TODO: setup better logging using extra(s) and a safe formatter 
+# Basic configuration
+logging.basicConfig(
+    level=logging.INFO,  # Set the minimum level to log
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+# Create loggers
+logger = logging.getLogger(__name__)
 
 
-@router.get("/")
-def get_coe(parameters: FourSidedSailParameters):
+
+@router.post("/")
+def get_coe(request: Request, parameters: FourSidedSailParameters):
 #def get_coe():
-    """Generate an SVG that visualizes the specified (x, y) coordinate."""
-    try:
 
+    """
+    Generate an SVG that visualizes the specified (x, y) coordinate as provided by parameters
+    TODO: Add support for 3-sided sail
+    """
+    req_uuid = str(uuid.uuid4())
+    url_path = request.url.path
+    logger.info(f"Incoming Request:{req_uuid}: url_path:{url_path}: parameters: {parameters}")
+
+    try:
         # Create the sail and render it to a SVG representation 
         xsail = sail.Sail(tack=point.Point(parameters.tack_x, parameters.tack_y),
             throat=point.Point(parameters.throat_x, parameters.throat_y),
@@ -47,7 +67,7 @@ def get_coe(parameters: FourSidedSailParameters):
         xsvg = svg.SVG()
         pathToFile = "./simpleSailFromClass.svg"
         off_set = point.Point(25,25)
-        svg_content =  xsvg.createSailSVG(xsail, pathToFile, True, off_set)
+        svg_content =  xsvg.createSailSVG(xsail, pathToFile, False, off_set)
 
         # svg_content = create_coordinate_svg(parameters.x, parameters.y)
         return Response(
@@ -57,5 +77,3 @@ def get_coe(parameters: FourSidedSailParameters):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating SVG: {str(e)}")
-
-    return {"message": "Hello, At this point something should happen, but at least you know you got here"}

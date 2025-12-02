@@ -15,9 +15,13 @@ from sailocus.geometry.point import Point
 
 class Sail(object):
     ################################################################
-    def __init__(self, tack, clew, head=None, peak=None, throat=None, sailName = None):
+    def __init__(self, tack, clew, head=None, peak=None, throat=None, sail_name = None):
+        '''
+        All units are in millimeters.
+        For a 4-sided sail, tehe following must be supplied:  tack, throat, peak, clew
+        '''
     
-        self.sailName = sailName 
+        self.sail_name = sail_name 
         
         params = "tack="+str(tack)+", clew="+str(clew)+", head="+str(head)+", peak="+str(peak)+", throat="+str(throat)
         print(params)

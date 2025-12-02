@@ -125,62 +125,90 @@
     <div class="container">
         <h1>Generate Your SVG</h1>
 
-            <form method="POST">
+        <form method="POST">
 
-                <div style="display: grid; grid-template-columns: auto 10px auto 20px auto 20px; 
-                align-items: center; gap: 8px 15px; flex-wrap: wrap; font-family: sans-serif;">
+            <div style="display: grid; grid-template-columns: auto 10px auto 20px auto 20px; 
+            align-items: center; gap: 8px 15px; flex-wrap: wrap; font-family: sans-serif;">
 
-                    <span style="white-space: nowrap;">Tack coordinates</span>
-                    <label for="x3">X:</label>
-                    <input type="text" id="tack_x" name="tack_x" placeholder="e.g. -5" value="{{ initial_value_tack_x }}"
-                        style="width:90px;" required>
-                    <label for="y3">Y:</label>
-                    <input type="text" id="tack_y" name="tack_y" placeholder="e.g. 8" value="{{ initial_value_tack_y }}"
-                        style="width:90px;" required>
+                <span style="white-space: nowrap;">Tack coordinates</span>
+                <label for="x3">X:</label>
+                <input type="text" id="tack_x" name="tack_x" placeholder="e.g. -5" value="{{ initial_value_tack_x }}"
+                    style="width:90px;" required>
+                <label for="y3">Y:</label>
+                <input type="text" id="tack_y" name="tack_y" placeholder="e.g. 8" value="{{ initial_value_tack_y }}"
+                    style="width:90px;" required>
 
-                    <br>
-                    <span style="white-space: nowrap;">Throat coordinates</span>
-                    <label for="x2">X:</label>
-                    <input type="text" id="throat_x" name="throat_x" placeholder="e.g. 20"
-                        value="{{ initial_value_throat_x }}" style="width:90px;" required>
-                    <label for="y2">Y:</label>
-                    <input type="text" id="throat_y" name="throat_y" placeholder="e.g. 15.7"
-                        value="{{ initial_value_throat_y }}" style="width:90px;" required>
+                <br>
+                <span style="white-space: nowrap;">Throat coordinates</span>
+                <label for="x2">X:</label>
+                <input type="text" id="throat_x" name="throat_x" placeholder="e.g. 20"
+                    value="{{ initial_value_throat_x }}" style="width:90px;" required>
+                <label for="y2">Y:</label>
+                <input type="text" id="throat_y" name="throat_y" placeholder="e.g. 15.7"
+                    value="{{ initial_value_throat_y }}" style="width:90px;" required>
 
-                    <br>
-                    <span style="white-space: nowrap;">Peak coordinates</span>
-                    <label for="x1">X:</label>
-                    <input type="text" id="peak_x" name="peak_x" value="{{ initial_value_peak_x }}" style="width:90px;"
-                        required>
-                    <label for="y1">Y:</label>
-                    <input type="text" id="peak_y" name="peak_y" value="{{ initial_value_peak_y }}" style="width:90px;"
-                        required>
+                <br>
+                <span style="white-space: nowrap;">Peak coordinates</span>
+                <label for="x1">X:</label>
+                <input type="text" id="peak_x" name="peak_x" value="{{ initial_value_peak_x }}" style="width:90px;"
+                    required>
+                <label for="y1">Y:</label>
+                <input type="text" id="peak_y" name="peak_y" value="{{ initial_value_peak_y }}" style="width:90px;"
+                    required>
 
-                    <br>
-                    <span style="white-space: nowrap;">Clew coordinates</span>
-                    <label for="x4">X:</label>
-                    <input type="text" id="clew_x" name="clew_x" placeholder="e.g. -5" value="{{ initial_value_clew_x }}"
-                        style="width:90px;" required>
-                    <label for="y4">Y:</label>
-                    <input type="text" id="clew_y" name="clew_y" placeholder="e.g. 8" value="{{ initial_value_clew_y }}"
-                        style="width:90px;" required>
+                <br>
+                <span style="white-space: nowrap;">Clew coordinates</span>
+                <label for="x4">X:</label>
+                <input type="text" id="clew_x" name="clew_x" placeholder="e.g. -5" value="{{ initial_value_clew_x }}"
+                    style="width:90px;" required>
+                <label for="y4">Y:</label>
+                <input type="text" id="clew_y" name="clew_y" placeholder="e.g. 8" value="{{ initial_value_clew_y }}"
+                    style="width:90px;" required>
 
-                </div>
-
-
-
-                <div style="text-align: center;">
-                    <button type="submit">Submit Coordinates</button>
-                </div>
-            </form>
-                    {% if svg_content %}
-            <div class="result">
-                <strong>SVG Generated:</strong>
-                <div class="svg-container" style="margin-top:15px;">
-                    {{ svg_content | safe }}
-                </div>
             </div>
-            {% endif %}
+
+
+
+            <div style="text-align: center;">
+                <button type="submit">Submit Coordinates</button>
             </div>
-        </body>
-    </html>
+        </form>
+
+        <div id="svg-container">
+            <!-- SVG will be inserted here -->
+        </div>
+
+        <div id="result"></div>
+
+        <script>
+            const textarea = document.getElementById('textInput');
+            const button   = document.getElementById('submitBtn');
+            const result   = document.getElementById('result');
+            const form     = document.getElementById('svgForm');
+
+            // Enable button only when textarea has content
+            textarea.addEventListener('input', () => {
+                button.disabled = textarea.value.trim() === '';
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const text = textarea.value.trim();
+                if (!text) return;
+
+                const response = await fetch('/generate-svg', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ 'tack_x': tack_x })
+                });
+
+                const svgText = await response.text();
+                result.innerHTML = svgText;  // Directly inject the SVG
+            });
+        </script>
+
+
+        </div>
+    </body>
+</html>

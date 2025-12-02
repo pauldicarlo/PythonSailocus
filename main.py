@@ -26,7 +26,7 @@ tack = point.Point(0, 0)
 clew = point.Point(397, 29) 
 
 
-xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sailName = "Four sided sail")
+xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sail_name = "Four sided sail")
 xsail.validateSail()
 xsvg = svg.SVG()
 pathToFile = "./simpleSailFromClass.svg"

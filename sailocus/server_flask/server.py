@@ -58,7 +58,7 @@ def sailocus():
         tack = point.Point(tack_x, tack_y)
         clew = point.Point(clew_x, clew_y)
 
-        xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sailName = "Four sided sail")
+        xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sail_name = "Four sided sail")
         xsail.validateSail()
         xsvg = svg.SVG()
         pathToFile = "./simpleSailFromClass.svg"
@@ -111,7 +111,7 @@ def generate_svg_endpoint():
     tack = point.str_to_point(tack_str)
     clew = point.str_to_point(clew_str)
 
-    xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sailName = "Four sided sail")
+    xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sail_name = "Four sided sail")
     xsail.validateSail()
     xsvg = svg.SVG()
     pathToFile = "./simpleSailFromClass.svg"

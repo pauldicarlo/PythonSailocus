@@ -24,5 +24,5 @@ def test_line_creation():
     tack = Point(0, 0) 
     clew = Point(397, 29) 
 
-    xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sailName = "Four sided sail")
+    xsail = sail.Sail(tack=tack, clew=clew, head=None, peak=peak, throat=throat, sail_name = "Four sided sail")
     xsail.validateSail()

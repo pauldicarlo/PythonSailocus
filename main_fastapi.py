@@ -6,7 +6,7 @@
 '''
 
 from fastapi import FastAPI
-from sailocus.apis.base import api_router
+from web.apis.base import api_router
 from web.routers.base import web_router
 
 class Config():

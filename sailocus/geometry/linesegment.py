@@ -13,7 +13,7 @@ from sailocus.geometry.line import newPointOnLine, getSlope
 # For pointA, return a point weighed perpendicular to the linesegement as defined by pointb
 #############################################################################################
 def getPerpendicularLineSegmentPoint(pointA: Point, pointB: Point, weight) -> Point:
-        print("__________________________________________________")
+        #print("__________________________________________________")
         theSlope = getSlope(pointA, pointB)
 
         if theSlope is None:

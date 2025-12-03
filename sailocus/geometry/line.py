@@ -15,7 +15,7 @@ from shapely.geometry import LineString
 # return the slope.
 #########################################################
 def getSlope(point_a: Point, point_b: Point): # TODO fix and get to work with mypy -> float:
-    method="getSlope():"
+    #method="getSlope():"
 
     if point_a is None or point_b is None:
         raise ValueError("Both points in parameters must not be None: point_a=" + str(point_a) + ", point_b=" + str(point_b))
@@ -25,7 +25,7 @@ def getSlope(point_a: Point, point_b: Point): # TODO fix and get to work with my
 
     try:
         theSlope = (float(point_b.getY()-point_a.getY())) /   (float(point_b.getX()-point_a.getX()))
-        print( method +" slope=" + str(theSlope) + "=  ( (" +  str(point_b.getY()) +")-("+str(point_a.getY()) + ") ) / ( (" +  str(point_b.getX()) +")-("+str(point_a.getX()) +"))" )
+        #print( method +" slope=" + str(theSlope) + "=  ( (" +  str(point_b.getY()) +")-("+str(point_a.getY()) + ") ) / ( (" +  str(point_b.getX()) +")-("+str(point_a.getX()) +"))" )
         return (theSlope )
     except ZeroDivisionError:
         # TODO: zero devision is slope of 0
@@ -118,7 +118,7 @@ def intersection(line_a: Line, line_b: Line): # TODO uncomment and get to work w
     line2 = LineString([line_b.point_a, line_b.point_b])
     intersection_point =line1.intersection(line2)
     if intersection_point is None:
-        print('intersection point Is none!')
+        #print('intersection point Is none!')
         return None
     if intersection_point is None:
         return None

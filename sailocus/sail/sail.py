@@ -24,7 +24,7 @@ class Sail(object):
         self.sail_name = sail_name 
         
         params = "tack="+str(tack)+", clew="+str(clew)+", head="+str(head)+", peak="+str(peak)+", throat="+str(throat)
-        print(params)
+        #print(params)
         
         # Some basic checks...we could have a 3 or 4 sided sail, so need to make sure we have consistnt points provided
         headSupplied = head is not None
@@ -129,14 +129,14 @@ class CenterOfEffort(object):
             center_of_effort = triangle.getCentroidPoint()
 
             self.component_centers_of_effort.append(center_of_effort)
-            print("new center_of_effort: " + str(center_of_effort) + " size=" + str(len(self.component_centers_of_effort)))
+            #print("new center_of_effort: " + str(center_of_effort) + " size=" + str(len(self.component_centers_of_effort)))
             
-        for i in self.component_centers_of_effort:
-            print("\t center_of_effort is " + str(i))    
+        #for i in self.component_centers_of_effort:
+            #print("\t center_of_effort is " + str(i))    
             
                 
         if len(self.component_centers_of_effort) > 1: 
-            print("a=" + str(self.component_centers_of_effort[0]) + ", b=" + str(self.component_centers_of_effort[1]) )
+            #print("a=" + str(self.component_centers_of_effort[0]) + ", b=" + str(self.component_centers_of_effort[1]) )
             self.lines_connecting_centroid_line_segments.append(LineSegment(self.component_centers_of_effort[0], self.component_centers_of_effort[1]))
         else:
             self.center_of_effort = self.component_centers_of_effort[0]
@@ -145,7 +145,7 @@ class CenterOfEffort(object):
 
         triangleArea1 =  Triangle(self.sail.throat,self.sail.clew,self.sail.peak).area()
         triangleArea2 = Triangle(self.sail.throat, self.sail.clew, self.sail.tack).area()
-        print("triangleArea1="+str(triangleArea1) + ", triangleArea2="+str(triangleArea2))
+        #print("triangleArea1="+str(triangleArea1) + ", triangleArea2="+str(triangleArea2))
         
         
         tp1 = getPerpendicularLineSegmentPoint(self.component_centers_of_effort[0], self.component_centers_of_effort[1], int(triangleArea2/1000))

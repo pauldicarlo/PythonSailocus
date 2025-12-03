@@ -6,6 +6,6 @@
 '''
 
 
-from sailocus.server_flask import server
+from web.server_flask import server
 
 server.runApp()

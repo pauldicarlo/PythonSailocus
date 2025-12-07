@@ -5,10 +5,8 @@
 @contact: paul.dicarlo@gmail.com
 '''
 
-
-from sailocus.geometry.point import Point
-
 from shapely.geometry import LineString
+from sailocus.geometry.point import Point
 
 #########################################################
 # For a given line defined by two points,

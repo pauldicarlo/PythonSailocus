@@ -5,9 +5,8 @@
 @contact: paul.dicarlo@gmail.com
 '''
 
-from sailocus.geometry.point import Point
 from sailocus.geometry.line import newPointOnLine, getSlope
-
+from sailocus.geometry.point import Point
 
 #############################################################################################
 # For pointA, return a point weighed perpendicular to the linesegement as defined by pointb

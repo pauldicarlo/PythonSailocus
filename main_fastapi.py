@@ -8,6 +8,7 @@
 from fastapi import FastAPI
 from web.apis.base import api_router
 from web.routers.base import web_router
+from web.db.connection import createSession
 
 class Config():
     
@@ -24,7 +25,10 @@ def start_app() -> FastAPI:
 
 def include_routers(app):
     app.include_router(api_router)
-    app.include_router(web_router)
+    app.include_router(web_router, prefix="", tags=[""], include_in_schema=False)
+
+
+session = createSession()
 
 app = start_app()
 

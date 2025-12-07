@@ -5,13 +5,14 @@
 @contact: https://github.com/pauldicarlo
 '''
 
-from typing import Optional, List
+import uuid
+from typing import List
 
 from sailocus.geometry.line import Line, intersection
-from sailocus.geometry.triangle import Triangle
 from sailocus.geometry.linesegment import LineSegment
 from sailocus.geometry.linesegment import getPerpendicularLineSegmentPoint
 from sailocus.geometry.point import Point
+from sailocus.geometry.triangle import Triangle
 
 class Sail(object):
     ################################################################
@@ -20,7 +21,10 @@ class Sail(object):
         All units are in millimeters.
         For a 4-sided sail, tehe following must be supplied:  tack, throat, peak, clew
         '''
-    
+
+        # Every sail will have unique id 
+        self.sail_uuid = str(uuid.uuid4())
+
         self.sail_name = sail_name 
         
         params = "tack="+str(tack)+", clew="+str(clew)+", head="+str(head)+", peak="+str(peak)+", throat="+str(throat)

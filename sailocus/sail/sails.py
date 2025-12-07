@@ -5,8 +5,8 @@
 @contact: https://github.com/pauldicarlo
 '''
 
-from .sail import Sail
 from ..geometry.point import  Point
+from .sail import Sail
 
 # All units are in millimeters
 SortOfOptimistSail = Sail( 

@@ -5,8 +5,9 @@
 @contact: https://github.com/pauldicarlo
 '''
 
-from . import route_sailocus
 from fastapi import APIRouter
+
+from . import route_sailocus
 
 web_router = APIRouter()
 # for webapp

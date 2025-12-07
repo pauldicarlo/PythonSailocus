@@ -5,12 +5,9 @@
 @contact: paul.dicarlo@gmail.com
 '''
 
-from sailocus.geometry.line import Line 
+from sailocus.geometry.line import Line, intersection
 from sailocus.geometry.linesegment import LineSegment
-from sailocus.geometry.line import intersection
 from sailocus.geometry.point import Point
-
-from typing import Optional
 
 ################################################################
 #

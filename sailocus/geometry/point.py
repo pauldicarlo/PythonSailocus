@@ -7,7 +7,6 @@
 
 import re
 import ast
-from typing import Tuple, Any
 
 ################################################################
 # class Point corresponds to the x,y coordinates of the corners 

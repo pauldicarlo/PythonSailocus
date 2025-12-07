@@ -5,18 +5,11 @@
 @contact: https://github.com/pauldicarlo
 '''
 
-
-import svgwrite
 from flask import Flask, Response, request, render_template
 
 from sailocus.geometry import point
-from sailocus.geometry import line
-from sailocus.geometry import triangle
-
-from sailocus.svg import svg
-
 from sailocus.sail import sail
-
+from sailocus.svg import svg
 
 app = Flask(__name__, 
     static_folder="../../web/static",

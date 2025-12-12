@@ -15,7 +15,7 @@ Sailocus is an attempt to write code that will explore the aerodynamic forces on
 The name Sailocus comes from "sail" and "locus" (see quote above)
 
 ### Simple Example
-```
+```python
 from sailocus.sail import sail
 from sailocus.geometry import point
 from sailocus.svg import svg

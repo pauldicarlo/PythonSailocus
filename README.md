@@ -1,5 +1,8 @@
+
 # Python Sailocus (Center-of-Effort)
 paul.dicarlo@gmail.com
+
+![alt text](materials/chalkboard.jpg)
 
 Blog: https://sailocus.blogspot.com/ 
 
@@ -45,21 +48,27 @@ You should only use sails designed and made by a professional. This code is just
 
 ## Project Todos
 Future thigns ao add to this project
+* Improve math/geometry code, handle edge conditions, etc
 * JWT tokens for Rest APIs (just to have them)
 * Hook up database, allow logins and ability to save/modify/delete sails in db
 * Login/create login pages
 * Group of premade dimensions for common sails (later in db) 
 
 # Setting up environment
-* python3 -m venv .venv 
-* source .venv/bin/activate
-    * On Windows: myenv/Scripts/Activate
+```bash
+python3 -m venv .venv 
+source .venv/bin/activate
+pip3 install  -r requirements.txt
+```
+
+# Saving the environment
 * pip3 freeze > requirements.txt
-* pip3 install  -r requirements.txt
 
 # Testing
-* python3 -m pytest
-* mypy .
+```bash
+python3 -m pytest
+mypy .
+```
 
 
 # Main modules:
@@ -68,7 +77,7 @@ Future thigns ao add to this project
     * And to get the Swagger docs:  http://127.0.0.1:8000/docs 
     * sample script to invoke [post_request_create_svg_fastapi.sh](./scripts/post_request_create_svg_fastapi.sh)
     * for the FastAPI web app:  http://localhost:8000/sailocus/api/v1/sailocus/
-* `main_flask.py` - Use a URL similar to http://127.0.0.1:5000/sailocus to get a simple form that takes sail coordinates for a 4-sided sail, calculates the CoE, and then displays an SVG of the sail/CoE. 
+* `main_flask.py` - **DEPRECATED**. Use a URL similar to http://127.0.0.1:5000/sailocus to get a simple form that takes sail coordinates for a 4-sided sail, calculates the CoE, and then displays an SVG of the sail/CoE. 
     * sample script to invoke [post_request_create_svg_flask.sh](./scripts/post_request_create_svg_flask.sh)
     * for the Flask web app:  http://127.0.0.1:5000/sailocus
 # Sample HTML 

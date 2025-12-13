@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,36 @@
     <a href="sailocus/simple">Create a sail and get the Center of Effort (CoE)</a>
     <p></p>
     <a href=""https://github.com/pauldicarlo/PythonSailocus">Python Sailocus Github Project</a>
+    <p>
+        <a href="#" onclick="alert('To Be Implemented!'); return false;">Login</a>
+        <p>
+        <a href="#" onclick="alert('To Be Implemented!'); return false;">Create Login Account</a>
+    </p>
     </div>
  
 </body>
 </html>
+-->
+
+
+
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Python Sailocus</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">Python Sailcous Main Page</h1>
+</div>
+<div class="container">
+    <p>This is a simple Flask application demonstrating HTML templating that does stuff with a sail's Center of Effort (CoE).</p>
+    <a href="sailocus/simple">Create a sail and get the Center of Effort (CoE)</a>
+    </p> <a href=""https://github.com/pauldicarlo/PythonSailocus">Python Sailocus Github Project</a> </p>
+    <p> <a href="#" onclick="alert('To Be Implemented!'); return false;">Login</a> </p>
+    <p> <a href="#" onclick="alert('To Be Implemented!'); return false;">Create Login Account</a>
+    </p>
+</div>
+
+{% endblock %}

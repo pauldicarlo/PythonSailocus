@@ -65,6 +65,8 @@ async def post_form(request: Request,
     Render the form template when accessing the root path
     """
 
+    print(dir(request))
+
     try:
         tack = Point(int(tack_x), int(tack_y)) 
         throat = Point(int(throat_x), int(throat_y))

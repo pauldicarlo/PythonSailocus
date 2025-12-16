@@ -42,6 +42,26 @@
                     ]
 
         },
+         {
+            "name": "main_fastapi.py HTTPS",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+
+                    "module": "uvicorn",
+                    "args": [
+                        "main_fastapi:app", // Replace 'main' with your Python file name and 'app' with your FastAPI instance name
+                        "--reload",
+                        "--host", "127.0.0.1", // Adjust host if needed
+                        "--port", "8000", // Adjust port if needed
+                        "--ssl-keyfile", "certs/server.key", 
+                        "--ssl-certfile", "certs/server.crt", 
+                        "--ssl-ca-certs", "certs/ca.crt", 
+                        "--ssl-version", "2", 
+                        "--ssl-cert-reqs", "2" //  2 means CERT_REQUIRED (enforces client cert)
+                    ]
+
+        },
         {
             "name": "Python: Debug All Pytest Tests",
             "type": "debugpy",

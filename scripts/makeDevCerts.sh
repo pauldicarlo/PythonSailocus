@@ -49,6 +49,24 @@ openssl req -new -key client.key -out client.csr -subj "/CN=dev-client"
 # Sign with CA (no SAN needed for client certs in most cases)
 openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365 -sha256
 
+
+# =====  CREATE PKCS#12 FILE FOR CLIENT CERT  =================
+# include CA for chain
+PASSWORD=changeit
+openssl pkcs12 -export -out client.p12 \
+  -inkey client.key \
+  -in client.crt \
+  -certfile ca.crt \
+  -legacy \
+  -password pass:$PASSWORD  # TODO: for non-dev situation, use a real password
+  echo "FOR Mac..."
+  #security import client.p12 -P yourpassword -k ~/Library/Keychains/login.keychain-db
+  security import client.p12 -P $PASSWORD -k ~/Library/Keychains/login.keychain-db
+
+
+
 # =============================================================
 # Cleanup unnecessary files
 rm *.csr *.ext *.srl
+
+echo -e "\rDone!\r"

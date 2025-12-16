@@ -76,7 +76,9 @@ mypy .
 * `main_fastapi.py` - Use a URL similar to http://127.0.0.1:8000/sailocus/api/v1/coe/ 
     * And to get the Swagger docs:  http://127.0.0.1:8000/docs 
     * sample script to invoke [post_request_create_svg_fastapi.sh](./scripts/post_request_create_svg_fastapi.sh)
-    * for the FastAPI web app:  http://localhost:8000/sailocus/api/v1/sailocus/
+    * for the FastAPI web app
+        * If only HTTP enabled:  http://127.0.0.1:8000/sailocus/api/v1/sailocus/
+        * If HTTPS enabled: https://127.0.0.1:8000/sailocus/simple/
 * `main_flask.py` - **DEPRECATED**. Use a URL similar to http://127.0.0.1:5000/sailocus to get a simple form that takes sail coordinates for a 4-sided sail, calculates the CoE, and then displays an SVG of the sail/CoE. 
     * sample script to invoke [post_request_create_svg_flask.sh](./scripts/post_request_create_svg_flask.sh)
     * for the Flask web app:  http://127.0.0.1:5000/sailocus

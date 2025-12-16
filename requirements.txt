@@ -22,6 +22,7 @@ mypy==1.18.2
 mypy_extensions==1.1.0
 numpy==2.3.5
 packaging==25.0
+passlib==1.7.4
 pathspec==0.12.1
 pluggy==1.6.0
 py==1.11.0
@@ -29,6 +30,7 @@ pycparser==2.23
 pydantic==2.12.4
 pydantic_core==2.41.5
 Pygments==2.19.2
+PyJWT==2.10.1
 PyQt5==5.15.11
 PyQt5-Qt5==5.15.18
 PyQt5_sip==12.17.1

@@ -33,7 +33,10 @@ export API_PATH=sailocus/api/v1/coe/
 
 
 # Execute curl using the substituted JSON file
-curl -v -X POST "http://localhost:8000/${API_PATH}" \
+curl -v -X POST "https://localhost:8000/${API_PATH}" \
   -H "Content-Type: application/json" \
   -d @request.json \
+  --cert certs/client.crt \
+  --key certs/client.key \
+  --cacert certs/ca.crt \
   --output coordinate_point.svg

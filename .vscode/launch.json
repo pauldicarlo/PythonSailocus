@@ -49,6 +49,7 @@
             "console": "integratedTerminal",
 
                     "module": "uvicorn",
+                    "justMyCode": false,
                     "args": [
                         "main_fastapi:app", // Replace 'main' with your Python file name and 'app' with your FastAPI instance name
                         "--reload",

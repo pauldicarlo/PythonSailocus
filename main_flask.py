@@ -6,6 +6,7 @@
 '''
 
 
+# DEPRECATED
 from web.server_flask import server
 
 server.runApp()

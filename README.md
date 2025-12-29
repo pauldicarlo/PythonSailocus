@@ -62,7 +62,9 @@ pip3 install  -r requirements.txt
 ```
 
 # Saving the environment
-* pip3 freeze > requirements.txt
+```bash
+ pip3 freeze > requirements.txt
+```
 
 # Testing
 ```bash
@@ -87,3 +89,5 @@ Screen grab of first time getting simple code path to work for a web interface t
 ![alt text](materials/firstSuccessfulSVGInHtml.png)
 
 
+# Notes
+* If you are like me and use a debugger, you may want to set this in your VSCode launch configruations: `"justMyCode": false`
